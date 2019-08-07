@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Shop</title>
+    <title>GlebK's new online store</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,23 @@
   </head>
 
   <body class='<%= controller.controller_name %>'>
-    <%= yield %>
+    <div id="banner">
+        <%= image_tag("logo.png") %>
+      <%= @page_title || "GlebK's stall" %>
+    </div>
+  <div id="columns">
+    <div id="side">
+        <ul>
+        <li><a href="/admin">Log In</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/faq">Questions</a></li>
+        <li><a href="/news">News</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+    <div id="main">
+      <%= yield %>
+  </div>
   </body>
 </html>
