@@ -17,7 +17,13 @@
   <div id="columns">
     <div id="side">
         <ul>
-        <li><a href="/admin">Log In</a></li>
+        <% if current_admin_user %>
+              <li><%= link_to "Admin Features", admin_admin_users_path %> </li>
+                <li>
+                <%= link_to "Logout", destroy_admin_user_session_path%>
+        <% else %>
+          <%= link_to "Login", new_admin_user_session_path  %>
+        <% end %>
         <li><a href="/">Home</a></li>
         <li><a href="/faq">Questions</a></li>
         <li><a href="/news">News</a></li>
