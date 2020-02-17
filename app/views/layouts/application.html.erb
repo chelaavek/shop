@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>GlebK's new online store</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>GlebK's new Online Store</title>
+  <%= stylesheet_link_tag "application", media: "all",
+                          "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tag %>
+</head>
 
   <body class='<%= controller.controller_name %>'>
     <div id="banner">
-        <%= image_tag("logo.png") %>
+        <%= link_to(image_tag("logo.png"), "/") %>
       <%= @page_title || "GlebK's stall" %>
     </div>
   <div id="columns">
     <div id="side">
+      <% if @cart %>
+          <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+              <%= render @cart %>
+          <% end %>
+      <% end %>
+
         <ul>
           <p>
           <%= Time.zone.now%>
@@ -25,7 +30,7 @@
                 <%= link_to "Admin Features", admin_admin_users_path %>
               <%end%>
                 <li>
-                <%=current_admin_user.email%>
+                <%=link_to "#{current_admin_user.email}",admin_admin_user_path(current_admin_user.id) %>
               <li><%= link_to "Logout", destroy_admin_user_session_path%> </li>
         <% else %>
           <%= link_to "Login", new_admin_user_session_path  %>
