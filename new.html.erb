@@ -1,0 +1,8 @@
+<% if cannot? :create, @product %>
+    <% controller.redirect_to store_url %>
+<% end %>
+<h1>New Product</h1>
+
+<%= render 'form', product: @product %>
+
+<%= link_to 'Back', products_path %>
