@@ -17,6 +17,7 @@ attr_accessor
   end
 
   def show
+    @product=Product.find(params[:id])
   end
 
 
