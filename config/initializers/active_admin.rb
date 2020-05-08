@@ -1,7 +1,7 @@
 ActiveAdmin.setup do |config|
 
   config.before_action do
-    if !(admin_user_mfa_session = AdminUserMfaSession.find) && (admin_user_mfa_session ? admin_user_mfa_session.record == current_admin_user : !admin_user_mfa_session)
+    if !(admin_user_mfa_session = AdminUserMfaSession.find) && (admin_user_mfa_session ? admin_user_mfa_session.record == current_admin_user : !admin_user_mfa_session) && current_admin_user.role == "admin"
       redirect_to new_admin_user_mfa_session_path
     end if current_admin_user && "/admin/mfa" != request.path
     if "/admin/logout" == request.path

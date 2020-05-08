@@ -4,8 +4,13 @@
 
   <tr class="total_line">
     <td colspan="2">Total</td>
-    <td class="total_cell"><%= number_to_currency(cart.total_price(current_admin_user.discount)) %></td>
-  </tr>
+    <% if current_admin_user %>
+      <td class="total_cell"><%= number_to_currency(cart.total_price(current_admin_user.discount)) %></td>
+    <% else %>
+      <td class="total_cell"><%= number_to_currency(cart.total_price()) %></td>
+    <% end %>
+
+        </tr>
 </table>
 <%= button_to 'Checkout', new_order_path, method: :get %>
 <%= button_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are u sure?'} %>

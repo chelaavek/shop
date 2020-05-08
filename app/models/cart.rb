@@ -1,7 +1,7 @@
 class Cart < ApplicationRecord
   has_many :line_items, dependent: :destroy
 
-  def total_price(user_discount)
+  def total_price(user_discount = 0)
     line_items.to_a.sum { |item| item.total_price - item.total_price * (user_discount / 100)}
   end
 
