@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_145228) do
+ActiveRecord::Schema.define(version: 2020_05_08_150724) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "namespace"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_05_08_145228) do
     t.string "role", default: "user", null: false
     t.string "google_secret"
     t.string "mfa_secret"
+    t.decimal "discount", precision: 5, scale: 2, default: "2.0", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end

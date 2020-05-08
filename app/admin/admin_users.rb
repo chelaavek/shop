@@ -30,6 +30,7 @@ ActiveAdmin.register AdminUser do
     column :sign_in_count
     column :created_at
     column :role
+    column :discount
     actions
   end
 
@@ -38,6 +39,7 @@ ActiveAdmin.register AdminUser do
   filter :sign_in_count
   filter :created_at
   filter :role
+  filter :discount
 
   form do |f|
     f.inputs do
@@ -45,6 +47,7 @@ ActiveAdmin.register AdminUser do
       f.input :password
       f.input :password_confirmation
       f.input :role, as: :select, collection: AdminUser::ROLES.invert, :label_method => :role_name
+      f.input :discount
     end
     f.actions
   end
