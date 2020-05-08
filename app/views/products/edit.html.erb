@@ -1,0 +1,7 @@
+<% if cannot? :update, @product %>
+  <% controller.redirect_to store_url %>
+<% end %>
+<h1>Editing Product</h1>
+<%= render 'form', product: @product %>
+<%= link_to 'Show', @product %> |
+<%= link_to 'Back', products_path %>
